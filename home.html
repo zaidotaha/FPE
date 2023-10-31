@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Space Mono">
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto Mono">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body{
+            margin:0;
+            padding: 0;
+        }
+        .space-mono{
+            font-family: 'Space Mono';
+        }
+        .roboto-mono{
+            font-family: 'Roboto Mono';
+        }
+        .page-container{
+            width:100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            top:70px;
+            padding-bottom: 1000px;
+        }
+        .navbar{
+            width:100%;
+            height:70px;
+            position:fixed;
+            top:0;left:0;
+            background-color: #004E64;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            color:white;
+            z-index: 2;
+        }
+        .Personal-Logo{
+            font-size: 2em;
+            margin-left:20px;
+            font-weight: bold;
+        }
+        .space{
+            flex:1;
+        }
+
+        .PC-list, .mobile-list{
+            list-style: none;
+            display: flex;
+            margin-right:10px;
+            padding:0;
+            white-space: nowrap;
+            position: relative;
+            align-items: center;
+            justify-content: center;  
+        }
+
+        .list .PC-list li, .list .mobile-list li{
+            margin-left:20px;
+            font-size: 1.2em;
+        }
+
+        .mobile-list{
+            margin:0;
+        }
+        .menu-toggle {
+            display: none;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            display: none;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 20px;
+            display: none;
+        }
+        .mobile-list{
+            z-index: 5;
+            display: none;
+            background-color: #004E64;
+            padding-bottom: 0.5em;
+        }
+        
+        
+        @media only screen and (max-width:1000px){
+            .list .PC-list li, .list .mobile-list li{
+            margin-left:15px;
+            font-size: 1em;
+        }
+        }
+
+        @media only screen and (max-width: 830px) {
+            .PC-list{
+                font-size:0.9em;
+            }
+        }
+        @media only screen and (max-width: 765px) {
+            .PC-list{
+                font-size:0.75em;
+            }
+        }
+        @media only screen and (max-width: 700px) {
+            .list .menu-icon{
+                display: inline;
+                margin-right:10px;
+                cursor: pointer;
+            }
+            .list .PC-list{
+                display: none;
+            }
+            
+        .menu-toggle:checked ~ .mobile-list{
+            display: block;
+            position: absolute;
+            text-align: center;
+            top:70px;
+            left:0;
+            width:100%;
+            color:white;
+        }
+        .mobile-list li{
+            margin-bottom: 4px;
+        }
+        }
+        @media only screen and (min-width: 700px){
+            .mobile-list{
+                display: none;
+            }
+        }
+        .Home-container1{
+            width:100%;
+            height: 500px;
+            background-color: #9FFFCB;
+            clip-path: polygon(0 0, 100% 0%, 100% 100%, 69% 88%, 0 100%);
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            z-index: 1;
+        }
+        .Home-container2{
+            width:80%;
+            max-width: 1000px;
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+            /* border: 1px solid black; */
+            bottom:30px;
+        }
+        .img-container{
+            z-index: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* border: 1px solid black; */
+        }
+        .img-me{
+            z-index: 5;
+            width:80%;
+        }
+        .img-me:hover{
+            transform: scale(1.1);
+        }
+        
+        .home-text{
+            /*border: 1px solid black;*/
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .Hello-message{
+            font-weight:900;
+            font-size: 2em;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            top:20px;
+            line-height: 0.9em;
+        }
+        
+        .Ahlan .Name{
+            font-weight:900;
+            font-size: 2em;
+            position: relative;
+            
+        }
+        .Ahlan{
+            margin-right: 8px;
+        }
+        .About-text{
+            font-weight:900;
+            font-size: 2em;
+            position: relative;
+            top:0px;
+        }
+
+        .wrapper{
+            display: flex;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            bottom:20px;
+            
+        }
+        .wrapper .static-txt{
+            color: black;
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+        
+        .wrapper .dynamic-txts{
+            margin-left: -25px;
+            height: 90px;
+            overflow: hidden;
+        }
+        .dynamic-txts li{
+        text-align: left;
+        list-style: none;
+        color: #004E64;
+        font-size: 1.2em;
+        font-weight: 900;
+        position: relative;
+        top: 0;
+        animation: slide 12s steps(4) infinite;
+        }
+        @keyframes slide {
+        100%{
+            top: -360px;
+        }
+        }
+        .dynamic-txts li span{
+        position: relative;
+        margin: 5px 0;
+        line-height: 90px;
+        }
+        .dynamic-txts li span::after{
+        content: "";
+        padding:3px;
+        position: absolute;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: #9FFFCB;
+        border-left: 2px solid #004E64;
+        animation: typing 3s steps(13) infinite;
+        top:-5px;
+        }
+        @keyframes typing {
+        40%, 60%{
+            left: calc(100% + 30px);
+        }
+        100%{
+            left: 0;
+        }
+        }
+
+        .Home-container3{
+            width:100%;
+            height:550px;
+            background-color: #25A18E;
+            clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 88%);
+            position: relative;
+            bottom:62px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            transition: all 0.75s ease-in;
+            z-index: 0;
+        }
+        .Home-container4{
+            width:100%;
+            max-width: 1500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            height:80%;
+            z-index: 2;
+        }
+        .ju-img{
+            width:400px; margin:40px; box-shadow: 0px 1px 30px 7px rgba(0,0,0,0.45);
+                    -webkit-box-shadow: 0px 1px 30px 7px rgba(0,0,0,0.45);
+                    -moz-box-shadow: 0px 1px 30px 7px rgba(0,0,0,0.45);
+            transition: all 1s ease;
+        }
+        .ju-img:hover{
+            transform: scale(1.1);
+        }
+        .About-container{display:none;}
+        .About-text-2{
+            font-weight:900;
+            font-size: 2em;
+            position: relative;
+            top:0px;
+        }
+        .amman-img{
+            z-index: -1; position: absolute; opacity: 0.33; width: 100%;
+            transition: all 0.5s ease-in;
+        }
+        @media only screen and (max-width: 1240px){
+            .Home-container3{
+                height:600px;
+            }
+            .Home-container4{
+                width:100%;
+                
+            }
+            .ju-img{
+                width: 400px;
+            }
+        }
+        @media only screen and (max-width: 1200px){
+            .Home-container3{
+                height:650px;
+            }
+            .Home-container4{
+                width:100%;
+            }
+            .ju-img{
+                width: 400px;
+            }
+        }
+        @media only screen and (max-width: 1100px){
+            .Home-container3{
+                height:700px;
+            }
+            .Home-container4{
+                width:100%;
+            }
+            .ju-img{
+                width: 400px;
+            }
+        }
+        
+        /* Moving image */
+        .About-container-2{
+            font-weight:900;
+            font-size: 2em;
+            display: block;
+            position: relative;
+            margin:0 10px 10px 10px;
+            top:0px;
+        }
+        .about-text-container{position: relative; right:20px; margin-left:15px;}
+            
+        @media only screen and (max-width: 1050px){
+            .Home-container3{
+                height:900px;
+                flex-direction: column;
+            }
+            .About-container{
+                display: inline;
+            }
+            .Home-container4{
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+            }
+            .About-container-2{
+                display:none;
+            }
+            .ju-img{
+                width: 350px;
+                margin:25px;
+                margin-bottom:10px;
+            }
+            .about-text-container{
+                margin:0 10; right:0;
+            }
+        }
+        /*  */  
+        @media only screen and (max-width: 890px){
+            .Home-container3{
+                height:950px;
+            }
+        }
+        @media only screen and (max-width: 730px){
+            .Home-container3{
+                height:1050px;
+            }
+        }
+        @media only screen and (max-width: 600px){
+            .Home-container3{
+                height:1100px;
+            }
+        }
+        @media only screen and (max-width: 550px){
+            .Home-container3{
+                height:1100px;
+            }
+            
+            .ju-img{
+                width:250px;
+            }
+        }
+        @media only screen and (max-width: 475px){
+            .Home-container3{
+                height:1150px;
+            }
+        }
+        @media only screen and (max-width: 430px){
+            .Home-container3{
+                height:1200px;
+            }
+        }
+        @media only screen and (max-width: 405px){
+            .Home-container3{
+                height:1250px;
+            }
+        }
+        @media only screen and (max-width: 380px){
+            .Home-container3{
+                height:1350px;
+            }
+        }
+        @media only screen and (max-width: 340px){
+            .Home-container3{
+                height:1450px;
+            }
+        }
+        .Home-container5{
+            width:100%;
+            height:400px;
+            background-color: #7AE582;
+            clip-path: polygon(50% 0%, 100% 0, 100% 35%, 100% 70%, 100% 92%, 71% 100%, 23% 85%, 0 93%, 0% 35%, 0 0);
+            position: relative;
+            top:-150px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            transition: all 0.75s ease-in;
+            z-index: -1;
+
+            
+        }
+        .Home-container6{
+            width:90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            height:80%;
+            z-index: 2;
+        }
+        .edu{
+            position: relative;
+            top:15px;
+        }
+        @media only screen and (max-width: 1000px){
+            .Home-container5{
+                height:550px;
+                top:-210px;
+            }
+            .edu{
+                top: 30px;
+            }
+        } 
+        @media only screen and (max-width: 700px){
+            .Home-container5{
+                height:600px;
+                top:-200px;
+            }
+            .edu{
+                position: relative;
+                top:0px;
+            }
+        }   
+        @media only screen and (max-width: 550px){
+            .Home-container5{
+                height:650px;
+                top:-200px;
+            }
+            .edu{
+                position: relative;
+                top:10px;
+            }
+        } 
+        @media only screen and (max-width: 500px){
+            .Home-container5{
+                height:750px;
+                top:-250px;
+            }
+            .edu{
+                top:20px;
+            }
+        }   
+        @media only screen and (max-width: 410px){
+            .Home-container5{
+                height:800px;
+                top:-250px;
+            }
+            .edu{
+                top:20px;
+            }
+        } 
+        @media only screen and (max-width: 370px){
+            .Home-container5{
+                height:880px;
+                top:-250px;
+            }
+            .edu{
+                top:10px;
+            }
+        }
+        .Home-container7{
+            width:100%;
+            height:400px;
+            background-color: #00A5CFCF;
+            clip-path: polygon(50% 0%, 100% 0, 100% 35%, 100% 70%, 100% 92%, 71% 100%, 23% 85%, 0 93%, 0% 35%, 0 0);
+            position: relative;
+            top:-230px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            transition: all 0.75s ease-in;
+            z-index: -4;
+        }
+        .Home-container8{
+            width:70%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            height:80%;
+            z-index: 2;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="navbar space-mono">
+        <div class="Personal-Logo">
+            Zaid Taha
+        </div>
+        <div class="space"></div>
+        <div class="list">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <ul class="PC-list">
+                <li>Home</li>
+                <li>About</li>
+                <li>Education</li>
+                <li>Skills</li>
+                <li>Projects</li>
+                <li>Testimonials</li>
+                <li>Contact</li>
+            </ul>
+            <ul class="mobile-list">
+                <li>Home</li>
+                <li>About</li>
+                <li>Education</li>
+                <li>Skills</li>
+                <li>Projects</li>
+                <li>Testimonials</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>  
+    <div class="page-container">
+        
+
+        <div class="Home-container1">
+            <div class="Home-container2">
+                <div class="space"></div>
+                <div class="home-text roboto-mono">
+                    <div class="Hello-message">
+                        <div class="Ahlan">Ahlan World!</div><div class="Name">I'm Zaid Taha</div> <br><br>
+                    </div>
+                    <div class="wrapper">
+                        <div class="static-txt">I'm a</div>
+                        <ul class="dynamic-txts">
+                            <li><span>Programmer</span></li>
+                            <li><span>Writer</span></li>
+                            <li><span>Tea Lover</span></li>
+                            <li><span>Perfectionist</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="space"></div>
+                <div class="img-container">
+                    <img src="cropped-img.png" class="img-me">
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="Home-container3">
+            <div class="About-container home-text roboto-mono">  
+                <span class="About-text-2"> About me! </span>
+            </div>
+            
+            <div class="Home-container4">
+                <div>
+                    <img src="JU8.jpg" class="ju-img">
+                </div>
+                <div class="about-text-container home-text roboto-mono">    
+                    <div class="About-text home-text roboto-mono About-container-2">About me!</div>
+                    <p>
+                    Hey there! I am a software engineer in the making based
+                    in Amman, Jordan. I am currently a Computer Science student at
+                    the University of Jordan and I'm graduating this fall semester!
+                    I look forward to joining the exciting and growing tech space 
+                    in Jordan. However, rather than boring you with my 5 year plan
+                    for the future let me tell you more about myself.
+                    </p>
+                    <p>
+                        I was born in Amman, but I moved to Sharjah at the age of 6 where I grew up.
+                        I have switched schools 5 times, so change is something I am completely comfortable with.
+                        After graduating highschool, I moved back to Jordan for university. Unfortunately, Computer
+                        Science wasn't my first major, Medicine was. After 3 gruelling years pursuing a degree I was not
+                        passionate about I decided to switch majors and I never looked back since!
+                    </p>
+                    <p>
+                        Now, in my last semester here at UJ, I am honing my tech skills and developing them further.
+                        I am training at Orange Coding School, doing side projects and expanding my toolset by learning
+                        new technologies. The next few years will be an exciting endevour for me, and I can't wait! 
+                    </p>
+                </div>  
+            </div>
+        </div>
+
+
+
+
+        <div class="Home-container5">
+            <div class="Home-container6">
+                
+                <div class="home-text roboto-mono edu">
+                    <div class="About-text">Education</div>
+                    <p>
+                        I graduated highschool from Al-Ansar international school, which taught the british IGCSE curriculum. 
+                        There, I achieved 6 A*'s and 1 A in my IGCSE's, and 2 A* in my A-levels.
+                        <br><br>
+                        Currently, I am 1 semester away from finishing my bachelors in Computer Science from the universiy 
+                        of Jordan and with credit hours to go ih ave a 3.71 GPA.
+                        <br><br>
+                        Over the past summer, I completed a CCNA course from the Cyber Technical Consulting center and I will 
+                        be applying for the exam in the next few months.
+                    </p>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="Home-container7">
+            <div class="Home-container8">
+                <div class="home-text roboto-mono">
+                    <p>
+                    Now, in my last semester here at UJ, I am honing my tech skills and developing them further.
+                    I am training at Orange Coding School, doing side projects and expanding my toolset by learning
+                    new technologies. The next few years will be an exciting endevour for me, and I can't wait! 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

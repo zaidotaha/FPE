@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaid's Portfolio</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Space Mono">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto Mono">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    /* body */
+    body{
+        margin:0;
+        padding: 0;
+    }
+    /* fonts */
+    .space-mono{
+        font-family: 'Space Mono';
+    }
+    .roboto-mono{
+        font-family: 'Roboto Mono';
+    }
+    /* Basic navbar containre */
+    .navbar{
+        width:100%;
+        height:70px;
+        position:fixed;
+        top:0;left:0;
+        background-color: #004E64;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        color:white;
+        z-index: 2;
+    }
+    /* logo top left in navbar */
+    .Personal-Logo{
+        font-size: 4vh;
+        margin-left:20px;
+        font-weight: bold;
+    }
+    /* space to push logo and list to the edges */
+    .space{
+        flex:1;
+    }
+    /* basic properties for the list */
+    .PC-list, .mobile-list{
+        list-style: none;
+        display: flex;
+        margin-right:10px;
+        padding:0;
+        white-space: nowrap;
+        position: relative;
+        align-items: center;
+        justify-content: center;  
+    }
+
+    .PC-list li, .mobile-list li{
+        margin-left:2vw;
+        font-size: 1.1rem;
+        transition: all ease 0.7s;
+    }
+    
+    /* mobile list initially not shown, high z-index to show over elements */
+    .mobile-list{
+        z-index: 5;
+        display: none;
+        background-color: #004E64;
+        padding-bottom: 0.5rem;
+        margin:0;
+    }
+    .mobile-list li{
+            margin-bottom: 4px;
+        }
+    /* burger menu initially not shown. */
+    /* menu toggle represents the checkbox, here it is never displayed. The label remains clickable tho. */
+    /* menu icon is the label for the checkbox menu toggle, it only contains the burger icon */
+    .menu-icon {
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 20px;
+        display: none;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    /* at 700px, PC-list removed, burger icon added. When checked, mobile list appears. */
+    @media only screen and (max-width: 700px) {
+        .list .menu-icon{
+            display: inline;
+            margin-right:10px;
+            cursor: pointer;
+        }
+        .list .PC-list{
+            display: none;
+        }
+
+        .menu-toggle:checked ~ .mobile-list{
+            display: block;
+            position: absolute;
+            text-align: center;
+            top:70px;
+            left:0;
+            width:100%;
+            color:white;
+        }
+        
+    }
+    
+    /* font readjustment */
+
+    @media only screen and (max-width: 850px) {
+        .PC-list li{
+            font-size:.8rem;
+        }
+    } 
+    /*container covering all following sectoins*/
+    .sections-big-container{
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top:70px; /*seperate sections from navbar*/
+        padding-bottom: 1000px; /*remove at the end*/
+    }
+
+    .Home-section{
+        width:100%;
+        background-color: #9FFFCB;
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 69% 88%, 0 100%);
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        z-index: 1;
+    }
+
+    .Home-section-content{
+        width:100%;
+        margin:auto;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction:row;
+        /* border: 1px solid black; */
+        
+        /* purpose of the following is to avoid polygon edges */
+        padding: 4%;
+        bottom:30px;
+        transition: all 2s ease;
+        
+    }
+    @media only screen and (max-width: 1050px){
+        .Home-section-content{
+            bottom:15px;
+        }
+    }
+
+    .Home-section-content-text{
+        width:auto;
+        left:2.5%;
+        border: 1px solid black;
+        position:relative;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        flex-wrap: wrap; /*trying something*/
+    }
+    .Ahlan{
+        font-weight:900;
+        font-size: 2rem;
+        border: 1px solid black;
+        transition: all 2s ease;
+        padding-top: 5%;
+        position: relative;
+        top:20px;
+    }
+    .First-Ahlan, .Second-Ahlan{
+            flex-wrap: wrap;
+            display: inline-block;
+        }
+    .text-under-ahlan{
+        font-weight: 900;
+        font-size: 1.2rem;
+        border: 1px solid black;
+        transition: all 2s ease;
+    }
+    .space{
+        width:10%; flex:1;
+    }
+    .Home-section-content-img{
+        right:2.5%;
+        border: 1px solid black;
+        position:relative;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+    .img-me{
+        width: 45%;
+        max-width: 45%;
+        padding:1%;
+    }
+
+    /* Wrapper */
+    .wrapper{
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        /* bottom:20px; */
+        
+    }
+    .wrapper .static-txt{
+        color: black;
+        font-size: 1.2em;
+        font-weight: 400;
+        flex-wrap: wrap;
+    }
+    
+    .wrapper .dynamic-txts{
+        margin-left: -25px;
+        height: 90px;
+        overflow: hidden;
+    }
+    .dynamic-txts li{
+        text-align: left;
+        list-style: none;
+        color: #004E64;
+        font-size: 1.2em;
+        font-weight: 900;
+        position: relative;
+        top: 0;
+        animation: slide 12s steps(4) infinite;
+    }
+    @keyframes slide {
+        100%{
+            top: -360px;
+        }
+    }
+    .dynamic-txts li span{
+        position: relative;
+        margin: 5px 0;
+        line-height: 90px;
+    }
+    .dynamic-txts li span::after{
+        content: "";
+        padding:3px;
+        position: absolute;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: #9FFFCB;
+        border-left: 2px solid #004E64;
+        animation: typing 3s steps(13) infinite;
+        top:-5px;
+    }
+    @keyframes typing {
+        40%, 60%{
+            left: calc(100% + 30px);
+        }
+        100%{
+            left: 0;
+        }
+    }
+
+    /* End of wrapper */
+    @media only screen and (max-width: 1200px){
+        .Ahlan{
+            font-size: 1.6rem;
+        }
+        .text-under-ahlan{
+            font-size: 0.9rem;
+        }
+    }
+    @media only screen and (max-width: 850px){
+        .Ahlan{
+            font-size: 1.25rem;
+        }
+        .text-under-ahlan{
+            font-size: 0.8rem;
+        }
+    }
+    @media only screen and (max-width: 800px){
+        .Ahlan{
+            font-size: 1.15rem;
+        }
+        .text-under-ahlan{
+            font-size: 0.7rem;
+        }
+    }
+    @media only screen and (max-width: 750px){
+        .Ahlan{
+            font-size: 1.05rem;
+        }
+        .text-under-ahlan{
+            font-size: 0.6rem;
+        }
+    }
+    @media only screen and (max-width: 700px){
+        .Home-section-content{
+            flex-direction:column-reverse;
+        }
+        .Home-section-content-text {
+            left:0; 
+        }
+        .Ahlan{
+            padding:0; top:10px;
+        }
+        .Home-section-content-img{
+            right:0;
+        }
+        .Ahlan{
+            font-size: 1.4rem;
+        }
+        .text-under-ahlan{
+            font-size: .9rem;
+        }
+    }
+    </style>
+
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <!-- Big navbar container whose display is flex (row).
+         It contains 3 main divs, Logo, space, List-->
+    <div class="navbar space-mono">
+
+        <div class="Personal-Logo">
+            Zaid Taha
+        </div>
+
+        <div class="space"></div>
+
+        <div class="list">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <ul class="PC-list">
+                <li>Home</li>
+                <li>About</li>
+                <li>Education</li>
+                <li>Skills</li>
+                <li>Projects</li>
+                <li>Testimonials</li>
+                <li>Contact</li>
+            </ul>
+            <ul class="mobile-list">
+                <li>Home</li>
+                <li>About</li>
+                <li>Education</li>
+                <li>Skills</li>
+                <li>Projects</li>
+                <li>Testimonials</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+
+    </div> 
+    <!-- END OF NAVBAR -->
+    <div class="sections-big-container">
+    <!-- HOME SECTION  -->
+        <div class="Home-section">
+            <div class="Home-section-content">
+                <div class="Home-section-content-text">
+
+                    <div class="Ahlan roboto-mono">
+                        <div class="First-Ahlan">Ahlan world!</div>
+                        <div class="Second-Ahlan">I'm Zaid Taha</div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="typing-text">
+                        <div class="wrapper text-under-ahlan roboto-mono">
+                            <div class="static-txt">I'm</div>
+                            <ul class="dynamic-txts">
+                                <li><span>a Programmer</span></li>
+                                <li><span>a Writer</span></li>
+                                <li><span>a Tea Lover</span></li>
+                                <li><span>a Perfectionist</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="Home-section-content-img">
+                    <img src="cropped-img.png" class="img-me">
+                </div>
+            </div>
+        </div>
+    <!-- END OF HOME SECTION  -->
+    </div> <!-- END OF sections-big-container -->
+
+
+
+</body>
